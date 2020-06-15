@@ -4,7 +4,10 @@ import "./style.css";
 
 
 const App = (props) => {
-  const [intReversed, setIntReversed] = React.useState(0)
+  const [intReversed, setIntReversed] = React.useState(null)
+  const [formData, setformData] = React.useState({
+    int: ""
+  })
 
   
   const reverseInt = (int) => {
@@ -20,18 +23,19 @@ const App = (props) => {
     }
   }
 
-  const handleReverse = (int) => {
-    const result = reverseInt(56)
+  const handleReverse = (event) => {
+    setformData({...formData, [event.target.name]: event.target.value})
+    const result = formData.int
     setIntReversed(result)
   } 
     return (
       <>
-      <div className="App">Hello World</div>
+      <div className="App">Unit 3 Assessment App</div>
       <form>
         Integer: <input type="number" name="int"/>
         <input type="submit" onClick={handleReverse}></input>
       </form>
-      <h2>The Reverse is: {intReversed}</h2>
+      <h2>The Reverse is: {formData.int}</h2>
       </>
     )
 }
